@@ -3,7 +3,7 @@ Gem::Specification.new do |spec|
   spec.version       = '0.1.0'
   spec.authors       = ['Luiz Carvalho']
   spec.email         = ['contato@luizcarvalho.com']
-  spec.description   = 'Handler to Lita to access system of helpdesk of Defensoria Pública do Estado do Tocantins'
+  spec.description   = 'Handler to Lita to communicate system Defensoria Pública do Estado do Tocantins Helpdesk System'
   spec.summary       = 'Handler to Defensoria Pública do Tocantins Helpdesk system'
   spec.homepage      = 'http://luizcarvalho.com'
   spec.license       = 'MIT'
