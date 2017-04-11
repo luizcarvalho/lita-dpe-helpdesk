@@ -11,9 +11,7 @@ module Lita
       route(/^abrir chamado$/i, :open_call)
 
       def open_call(response)
-        response.reply(
-          %(Olá, para qual sistema você deseja atendimento?)
-        )
+        response.reply(t('start_call'))
         next_step(:define_system)
       end
 
@@ -22,21 +20,19 @@ module Lita
         response = payload[:message]
         system_name = detect_system_name(response.body)
         if system_name
-          response.reply(
-            "Muito bem, vamos então abrir um chamado para o sistema #{system_name}. O que está acontecendo?"
-          )
+          response.reply(t('reason', system_name: system_name))
           next_step('inform_reason')
         else
-          response.reply(
-            'Não encontrei nenhum sistema com esse nome, para qual sistema você deseja atendimento?'
-          )
+          response.reply(t('system_not_found'))
         end
       end
 
       def inform_reason(payload)
         return unless context == 'inform_reason'
         response = payload[:message]
-        response.reply('Obrigado! Seu chamado foi aberto com o número #N, para mais detalhes URL')
+        response.reply(
+          t('finalize', numero: '#N', url: 'URL')
+        )
         end_context
       end
 
