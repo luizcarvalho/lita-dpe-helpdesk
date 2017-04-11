@@ -33,7 +33,7 @@ describe Lita::Handlers::DpeHelpdesk, lita_handler: true do
       end
 
       it 'reason' do
-        send_message('Just, down work!')
+        send_message('Just, don\'t work!')
         expect(replies.last).to include('chamado foi aberto')
       end
 

@@ -12,7 +12,7 @@ Lita handler to connect and manage helpdesk calls on Helpdesk Defensoria Públic
 Add lita-dpe-helpdesk to your Lita instance's Gemfile:
 
 ``` ruby
-gem 'lita-dpe-helpdesk'
+gem 'lita_dpe_helpdesk'
 ```
 
 ## Configuration

@@ -8,5 +8,5 @@ require 'lita/handlers/dpe_helpdesk'
 
 Lita::Handlers::DpeHelpdesk.template_root File.expand_path(
   File.join('..', '..', 'templates'),
- __FILE__
+  __FILE__
 )

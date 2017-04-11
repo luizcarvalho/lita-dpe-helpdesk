@@ -1,0 +1,8 @@
+en:
+  lita:
+    handlers:
+      dpe_helpdesk:
+        start_call: Olá, para qual sistema você deseja atendimento?
+        reason: Muito bem, vamos então abrir um chamado para o sistema system_name. O que está acontecendo?
+        system_not_found: Não encontrei nenhum sistema com esse nome, para qual sistema você deseja atendimento?
+        finalize: Obrigado! Seu chamado foi aberto com o número \#N, para mais detalhes URL
