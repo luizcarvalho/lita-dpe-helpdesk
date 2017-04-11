@@ -5,7 +5,7 @@ module Lita
       CONTEXT_LABEL = 'open_call'.freeze
 
       on :shut_down_complete, :end_context
-      on :unhandled_message, :issue_description
+      on :unhandled_message, :inform_reason
       on :unhandled_message, :define_system
 
       route(/^abrir chamado$/i, :open_call)
@@ -22,17 +22,21 @@ module Lita
         response = payload[:message]
         system_name = detect_system_name(response.body)
         if system_name
-          response.reply("Ok, I go open a call to issue in #{system_name} system!")
-          next_step('issue_description')
+          response.reply(
+            "Muito bem, vamos então abrir um chamado para o sistema #{system_name}. O que está acontecendo?"
+          )
+          next_step('inform_reason')
         else
-          response.reply('Para qual sistema você deseja atendimento?')
+          response.reply(
+            'Não encontrei nenhum sistema com esse nome, para qual sistema você deseja atendimento?'
+          )
         end
       end
 
-      def issue_description(payload)
-        return unless context == 'issue_description'
+      def inform_reason(payload)
+        return unless context == 'inform_reason'
         response = payload[:message]
-        response.reply('Thanks! Your call was opened with number #123')
+        response.reply('Obrigado! Seu chamado foi aberto com o número #N, para mais detalhes URL')
         end_context
       end
 
