@@ -1,10 +1,12 @@
 require 'rest-client'
 module Dpe
   class Communicator
-    def initialize(url, details_path, systems_map)
-      @url = url
-      @details_path = details_path
-      @systems_map = systems_map
+
+    def initialize(base_url, options = {})
+      @base_url = base_url
+      @details_path = options[:details_path]
+      @create_path = options[:create_path]
+      @systems_map = options[:systems_map]
     end
 
     def open_call(message, system, user_id)
@@ -12,10 +14,18 @@ module Dpe
       send_data(data)
     end
 
+    def creation_url
+      "#{@base_url}#{@create_path}"
+    end
+
+    def details_url
+      "#{@base_url}#{@details_path}"
+    end
+
     private
 
     def send_data(data)
-      JSON.parse(RestClient.post(@url, data))
+      JSON.parse(RestClient.post(@base_url, data))
     end
 
     def system_id_for(system_name)
