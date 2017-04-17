@@ -10,6 +10,7 @@ SimpleCov.start { add_filter '/spec/' }
 
 require 'lita_dpe_helpdesk'
 require 'lita/rspec'
+require 'support/request_stubs'
 
 Coveralls.wear!
 

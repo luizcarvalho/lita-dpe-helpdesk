@@ -1,16 +1,16 @@
 require 'rest-client'
+
 module Dpe
   class Communicator
-
     def initialize(base_url, options = {})
       @base_url = base_url
       @details_path = options[:details_path]
       @create_path = options[:create_path]
-      @systems_map = options[:systems_map]
+      @category = Category.new
     end
 
     def open_call(message, system, user_id)
-      data = format_request(message, system, user_id)
+      data = format_request(descricao: message, categoria: system, servidor: user_id)
       send_data(data)
     end
 
@@ -28,17 +28,13 @@ module Dpe
       JSON.parse(RestClient.post(@base_url, data))
     end
 
-    def system_id_for(system_name)
-      @systems_map[system_name.downcase]
-    end
-
-    def format_request(descricao, servidores_search, categoria)
+    def format_request(options = {})
       {
         grupo_responsavel: 1,
-        categorias: system_id_for(categoria),
-        label: "Chamado aberto pela Susie para #{categoria}",
-        descricao: descricao,
-        servidores_search: servidores_search,
+        categorias: @category.system_id_for(options[:categoria]),
+        label: "Chamado aberto pela Susie para #{options[:categoria]}",
+        descricao: options[:descricao],
+        servidores_search: options[:servidor],
         data_abertura:  DateTime.now.to_s
       }
     end
