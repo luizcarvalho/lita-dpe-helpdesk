@@ -8,10 +8,15 @@ module Lita
       on :unhandled_message, :define_system
 
       route(/^abrir chamado$/i, :open_call)
+      route(%r{^/nomes_sistemas$}, :categories_names)
 
       def open_call(response)
         response.reply(t('start_call'))
         next_step(:define_system)
+      end
+
+      def categories_names(response)
+        response.reply(render_template('categories_names'))
       end
 
       def define_system(payload)
@@ -22,7 +27,7 @@ module Lita
           response.reply(t('reason', system_name: system_name))
           next_step('inform_reason')
         else
-          response.reply(t('system_not_found'))
+          response.reply(t('category_not_found'))
         end
       end
 
