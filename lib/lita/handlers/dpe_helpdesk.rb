@@ -1,7 +1,6 @@
 module Lita
   module Handlers
     class DpeHelpdesk < Handler
-      SYSTEMS = %w(odin saed solar athenas).freeze
       CONTEXT_LABEL = 'open_call'.freeze
 
       on :shut_down_complete, :end_context
@@ -40,8 +39,12 @@ module Lita
 
       private
 
+      def category
+        @category ||= Category.new
+      end
+
       def detect_system_name(body)
-        SYSTEMS.find { |e| /^#{body}$/ =~ e }
+        category.compare(body)
       end
 
       def context

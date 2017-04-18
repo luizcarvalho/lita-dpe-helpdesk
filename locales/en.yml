@@ -4,5 +4,6 @@ en:
       dpe_helpdesk:
         start_call: Olá, para qual sistema você deseja atendimento?
         reason: Muito bem, vamos então abrir um chamado para o sistema %{system_name}. O que está acontecendo?
-        system_not_found: Não encontrei nenhum sistema com esse nome, para qual sistema você deseja atendimento?
+        system_not_found: Não encontrei nenhum sistema com esse nome, para qual sistema você deseja atendimento?. tente /nomes_sistemas para ver as opções disponíveis.
         finalize: Obrigado! Seu chamado foi aberto com o número %{numero}, para mais detalhes %{url}
+

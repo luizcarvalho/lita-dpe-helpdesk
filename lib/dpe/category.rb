@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 class Category
   MAP = {
     "Athenas": 5, "Box": 32, "Chronus": 31, "HELPDESK": 37,
@@ -11,6 +13,20 @@ class Category
   end
 
   def names
-    MAP.keys
+    @names ||= MAP.keys.map(&:to_s)
+  end
+
+  def compare(name)
+    normalized_names.find { |category_name| /^#{normalize(name)}$/ =~ category_name }
+  end
+
+  private
+
+  def normalized_names
+    @normalized_names ||= names.map { |name| normalize(name) }
+  end
+
+  def normalize(str)
+    ActiveSupport::Inflector.transliterate str.downcase.gsub(/\s/, '_')
   end
 end
