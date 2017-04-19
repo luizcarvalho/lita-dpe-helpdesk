@@ -20,6 +20,7 @@ module Lita
       end
 
       def define_system(payload)
+        puts 'define system called'
         return unless context == 'define_system'
         response = payload[:message]
         system_name = detect_system_name(response.body)

@@ -1,5 +1,5 @@
 Gem::Specification.new do |spec|
-  spec.name          = 'lita_dpe_helpdesk'
+  spec.name          = 'lita-dpe-helpdesk'
   spec.version       = '0.1.0'
   spec.authors       = ['Luiz Carvalho']
   spec.email         = ['contato@luizcarvalho.com']
