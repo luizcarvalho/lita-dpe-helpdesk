@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'lita', '>= 4.7'
   spec.add_runtime_dependency 'rest-client'
-  spec.add_runtime_dependency 'active_support'
+  spec.add_runtime_dependency 'activesupport'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'pry-byebug'
