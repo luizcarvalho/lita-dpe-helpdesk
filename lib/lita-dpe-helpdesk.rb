@@ -9,7 +9,7 @@ require 'lita/handlers/helpers/dpe_helpdesk_helper'
 require 'lita/handlers/dpe_helpdesk'
 require 'dpe/communicator'
 require 'dpe/category'
-require 'telegram/bot/api'
+require 'telegram/bot'
 
 include DpeHelpdeskHelper
 
