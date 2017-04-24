@@ -16,11 +16,11 @@ module Lita
       end
 
       def categories_names(response)
-        response.reply(render_template('categories_names'))
+        response.reply(telegram_keyboard('Selecione algum dos sistemas abaixo:', category.names))
+        next_step(:define_system)
       end
 
       def define_system(payload)
-        puts 'define system called'
         return unless context == 'define_system'
         response = payload[:message]
         system_name = detect_system_name(response.body)
@@ -44,6 +44,10 @@ module Lita
       Lita.register_handler(DpeHelpdesk)
 
       private
+
+      def json_template(template_name, locals = {})
+        JSON.parse(render_template(template_name, **locals), symbolize_names: true)
+      end
 
       def category
         @category ||= Category.new
